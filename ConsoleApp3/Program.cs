@@ -4,99 +4,196 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp3
+namespace Calculator
 {
-    class Program
+    public class Application
     {
-        static void Main(string[] args)
+        public void Run()
         {
-            char again = 'y';
-            while (again == 'y')
+        }
+    }
+    public class Program
+    {
+        public static void Menu(Operation[] operations)
+        {
+            
             {
-                double one, two, result;
-                
-                char sign;
-                Console.Write("Программа: инженерный калькулятор.\n" + 
+                Console.WriteLine("Программа: инженерный калькулятор.\n" + 
                     "Вам необходимо ввести первое число, знак действия, которое хотите совершить," +
                     " второе число.\n");
-                Console.Write("Функции калькулятора и как они обозначаются:\n умножение «*»\n" +
-                    " вычитание «-»\n сложение «+»\n деление «/»\n остаток от деления «%»\n " +
-                    "возведение в степень «^»\n извлечение корня «q»\n синус «s»\n " +
-                    "косинус «c»\n тангенс «t»\n котангенс «g»\n подсчёт факториала «!»\n");
-                Console.Write("Введите первое число: ");
-                one = Convert.ToDouble(Console.ReadLine());
-                Console.Write("Введите знак действия : ");
-                sign = Convert.ToChar(Console.ReadLine());
-                Console.Write("Введите Второе число, если его нет, то введите «1»: ");
-                two = Convert.ToDouble(Console.ReadLine());
-
-                if (sign == '+')
+                for (int i = 0; i < operations.Length; i++)
                 {
-                    result = one + two;
-                    Console.WriteLine("Ответ: " + result);
-                    Console.ReadKey();
+                    Operation operation = operations[i];
+                    Console.WriteLine($"{i + 1}. {operation.Name}");
                 }
-                if (sign == '-')
-                {
-                    result = one - two;
-                    Console.WriteLine("Ответ: " + result);
-                    Console.ReadKey();
-                }
-                if (sign == '*')
-                {
-                    result = one * two;
-                    Console.WriteLine("Ответ: " + result);
-                    Console.ReadKey();
-                }
-                if (sign == '/')
-                {
-                    if (two != 0)
-                    {
-                        result = one / two;
-                        Console.WriteLine("Ответ: " + result);
-                        Console.ReadKey();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ошибка. На ноль делить нельзя!");
-                        Console.ReadKey();
-                    }
-                }
-                if (sign == '%')
-                {
-                    result = one % two;
-                    Console.WriteLine("Ответ: " + result);
-                    Console.ReadKey();
-                }
-                if (sign == '^')
-                {
-                    result = Math.Pow(one, two);
-                    Console.WriteLine("Ответ: " + result);
-                    Console.ReadKey();
-                }
-                if (sign == 'q')
-                {
-                    result = Math.Sqrt(one);
-                    Console.WriteLine("Ответ: " + result);
-                    Console.ReadKey();
-                }
-                if (sign == '!')
-                {
-                    double Factorial(double x)
-                    {
-                        if (x == 1) return 1;
-
-                        return x * Factorial(x - 1);
-                    }
-                    result = Factorial(one);
-                    Console.WriteLine("Ответ: " + result);
-                    Console.ReadKey();
-                }
-                Console.Write("Хотите продолжить?\nВведите [y], если да, и [n], если нет: ");
-                again= Convert.ToChar(Console.ReadLine());
+                
+                
             }
             
         }
     }
-   
+    public static void Main()
+    {
+        try
+        {
+            
+        }
+        catch ()
+        {
+ 
+        }
+    }
+    public abstract class Operation
+    {
+        public abstract string Name { get; }
+
+        public abstract double Run(params double[] numbers);
+    }
+    public sealed class Addition : Operation
+    {
+        public override string Name => "Сложение";
+
+        public override double Run(params double[] numbers)
+        {
+            return numbers.Sum();
+        }
+    }
+    public sealed class Substraction : Operation
+    {
+        public override string Name => "Вычитание";
+
+        public override double Run(params double[] numbers)
+        {
+            return 0d;
+        }
+    }
+    public sealed class Multiplacation : Operation
+    {
+        public override string Name => "Умножение";
+
+        public override double Run(params double[] numbers)
+        {
+            return 0d;
+        }
+    }
+    public sealed class Division : Operation
+    {
+        public override string Name => "Деление";
+
+        public override double Run(params double[] numbers)
+        {
+            return 0d;
+        }
+    }
+    public sealed class Sqrt : Operation
+    {
+        public override string Name => "Квадратный корень";
+
+        public override double Run(params double[] numbers)
+        {
+            return 0d;
+        }
+    }
+    class ProcessCalculation
+    {
+        public static void TextLines()
+    {
+        Console.WriteLine("функции калькулятора и как они обозначаются:\n умножение «*»\n" +
+                           " вычитание «-»\n сложение «+»\n деление «/»\n остаток от деления «%»\n " +
+                            "возведение в степень «^»\n извлечение корня «q»\n синус «s»\n " +
+                            "косинус «c»\n тангенс «t»\n котангенс «g»\n подсчёт факториала «!»\n"); 
+    }
+
+        public static void UserInput()
+        {
+            Console.WriteLine("\n введите первое число: ");
+            double numFirst = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("\n введите знак действия : ");
+            char sign = Convert.ToChar(Console.ReadLine());
+            Console.WriteLine("\n введите второе число: ");
+            double numSecond = Convert.ToDouble(Console.ReadLine());
+           
+        }
+    }
+    //char again = 'y';
+    //            while (again == 'y')
+    //        double one, two, result;
+
+    //                char sign;
+    //    console.write("функции калькулятора и как они обозначаются:\n умножение «*»\n" +
+    //                    " вычитание «-»\n сложение «+»\n деление «/»\n остаток от деления «%»\n " +
+    //                    "возведение в степень «^»\n извлечение корня «q»\n синус «s»\n " +
+    //                    "косинус «c»\n тангенс «t»\n котангенс «g»\n подсчёт факториала «!»\n");
+    //   console.write("введите первое число: ");
+    //                one = convert.todouble(console.readline());
+    //                console.write("введите знак действия : ");
+    //                sign = convert.tochar(console.readline());
+    //                console.write("введите второе число, если его нет, то введите «1»: ");
+    //                two = convert.todouble(console.readline());
+
+    //                if (sign == '+')
+    //                {
+    //                    result = one + two;
+    //                    console.writeline("ответ: " + result);
+    //                    console.readkey();
+    //                }
+    //                if (sign == '-')
+    //                {
+    //                    result = one - two;
+    //                    console.writeline("ответ: " + result);
+    //                    console.readkey();
+    //                }
+    //                if (sign == '*')
+    //                {
+    //                    result = one * two;
+    //                    console.writeline("ответ: " + result);
+    //                    console.readkey();
+    //                }
+    //                if (sign == '/')
+    //                {
+    //                    if (two != 0)
+    //                    {
+    //                        result = one / two;
+    //                        console.writeline("ответ: " + result);
+    //                        console.readkey();
+    //                    }
+    //                    else
+    //                    {
+    //                        console.writeline("ошибка. на ноль делить нельзя!");
+    //                        console.readkey();
+    //                    }
+    //                }
+    //                if (sign == '%')
+    //                {
+    //                    result = one % two;
+    //                    console.writeline("ответ: " + result);
+    //                    console.readkey();
+    //                }
+    //                if (sign == '^')
+    //                {
+    //                    result = math.pow(one, two);
+    //                    console.writeline("ответ: " + result);
+    //                    console.readkey();
+    //                }
+    //                if (sign == 'q')
+    //                {
+    //                    result = math.sqrt(one);
+    //                    console.writeline("ответ: " + result);
+    //                    console.readkey();
+    //                }
+    //                if (sign == '!')
+    //                {
+    //                    double factorial(double x)
+    //                    {
+    //                        if (x == 1) return 1;
+
+    //                        return x * factorial(x - 1);
+    //                    }
+    //                    result = factorial(one);
+    //                    console.writeline("ответ: " + result);
+    //                    console.readkey();
+    //                }
+    //                console.write("хотите продолжить?\nвведите [y], если да, и [n], если нет: ");
+    //                again= convert.tochar(console.readline());
 }
+
